@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".PhotoBucketDetailActivity"
+    tools:showIn="@layout/activity_photo_bucket_detail">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Caption:" />
+
+    <TextView
+        android:id="@+id/detail_caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Caption goes here"
+        android:textSize="20sp"
+        android:layout_margin="20dp"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Image URL:" />
+
+    <TextView
+        android:id="@+id/detail_imageURL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="URL goes here"
+        android:textSize="20sp"
+        android:layout_margin="20dp"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        />
+
+</LinearLayout>

@@ -21,7 +21,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhotoBucketAdapter {
+public class PhotoBucketAdapter extends RecyclerView.Adapter<PhotoBucketAdapter.PhotoBucketViewHolder>{
 
     private List<DocumentSnapshot> mPhotoBucketSnapshots = new ArrayList<>();
 
@@ -52,12 +52,12 @@ public class PhotoBucketAdapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PhotoBucketViewHolder movieQuoteViewHolder, int i) {
+    public void onBindViewHolder(@NonNull PhotoBucketViewHolder PhotoBucketViewHolder, int i) {
         DocumentSnapshot ds = mPhotoBucketSnapshots.get(i);
-        String quote = (String) ds.get(Constants.KEY_CAPTION);
-        String movie = (String) ds.get(Constants.KEY_URL);
-        movieQuoteViewHolder.mCaptionTextView.setText(caption);
-        movieQuoteViewHolder.mImageURLTextView.setText(ImageURL);
+        String caption = (String) ds.get(Constants.KEY_CAPTION);
+        String imageURL = (String) ds.get(Constants.KEY_URL);
+        PhotoBucketViewHolder.mCaptionTextView.setText(caption);
+        PhotoBucketViewHolder.mImageURLTextView.setText(imageURL);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class PhotoBucketAdapter {
         public PhotoBucketViewHolder(@NonNull View itemView) {
             super(itemView);
             mCaptionTextView = itemView.findViewById(R.id.itemview_caption);
-            mImageURLTextView = itemView.findViewById(R.id.itenview_imageurl);
+            mImageURLTextView = itemView.findViewById(R.id.itemview_imageURL);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
