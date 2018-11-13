@@ -17,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.koushikdutta.ion.Ion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,10 +55,11 @@ public class PhotoBucketAdapter extends RecyclerView.Adapter<PhotoBucketAdapter.
     @Override
     public void onBindViewHolder(@NonNull PhotoBucketViewHolder PhotoBucketViewHolder, int i) {
         DocumentSnapshot ds = mPhotoBucketSnapshots.get(i);
-        String caption = (String) ds.get(Constants.KEY_CAPTION);
-        String imageURL = (String) ds.get(Constants.KEY_URL);
+        String caption = (String)ds.get(Constants.KEY_CAPTION);
+        String imageURL = (String)ds.get(Constants.KEY_URL);
         PhotoBucketViewHolder.mCaptionTextView.setText(caption);
         PhotoBucketViewHolder.mImageURLTextView.setText(imageURL);
+        //Ion.with(PhotoBucketDetailActivity.mImageView).load(imageURL);
     }
 
     @Override
