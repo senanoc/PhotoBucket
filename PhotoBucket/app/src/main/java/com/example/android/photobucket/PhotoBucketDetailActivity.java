@@ -1,6 +1,7 @@
 package com.example.android.photobucket;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
@@ -30,7 +31,6 @@ class PhotoBucketDetailActivity extends AppCompatActivity {
     private DocumentSnapshot mDocSnapshot;
     private DocumentReference mDocRef;
     private TextView mCaptionTextView;
-    private TextView mImageURLTextView;
     private ImageView mImageView;
 
     @Override
@@ -42,6 +42,7 @@ class PhotoBucketDetailActivity extends AppCompatActivity {
         mCaptionTextView = findViewById(R.id.detail_caption);
         mImageView = findViewById(R.id.detail_imageURL);
 
+        //Intent receivedIntent = getIntent();
         String docId = getIntent().getStringExtra(Constants.EXTRA_DOC_ID);
 
         mDocRef = FirebaseFirestore.getInstance().collection(Constants.COLLECTION_PATH).document(docId);
@@ -49,12 +50,17 @@ class PhotoBucketDetailActivity extends AppCompatActivity {
             @Override
             public void onEvent(DocumentSnapshot documentSnapshot, FirebaseFirestoreException e) {
                 if (e != null) {
-                    Log.w(Constants.TAG, "Listen Failed!");
+                    Log.v(Constants.TAG, "Listen Failed!");
                     return;
                 }
                 if (documentSnapshot.exists()) {
                     mDocSnapshot = documentSnapshot;
-                    mCaptionTextView.setText((String) documentSnapshot.get(Constants.KEY_CAPTION));
+                    String mImageUrl = (String)documentSnapshot.get(Constants.KEY_URL);
+                    if (mImageUrl.isEmpty()) mImageUrl = randomImageUrl();
+                    mCaptionTextView.setText((String)documentSnapshot.get(Constants.KEY_CAPTION));
+                    Ion.with(mImageView).load(mImageUrl);
+
+/*                    mCaptionTextView.setText((String) documentSnapshot.get(Constants.KEY_CAPTION));
                     if (documentSnapshot.get(Constants.KEY_URL) == Constants.KEY_BLANK) {
                         Ion.with(mImageView).load((randomImageUrl()));
                     }
@@ -63,7 +69,7 @@ class PhotoBucketDetailActivity extends AppCompatActivity {
                     }
                     //mImageURLTextView.setText((String)documentSnapshot.get(Constants.KEY_URL));
                     //Ion.with(mImageView).load((String)documentSnapshot.get(Constants.KEY_URL));
-                    //Ion.with(mImageView).load(randomImageUrl());
+                    //Ion.with(mImageView).load(randomImageUrl());*/
 
                 }
             }

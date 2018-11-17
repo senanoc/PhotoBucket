@@ -56,9 +56,9 @@ public class PhotoBucketAdapter extends RecyclerView.Adapter<PhotoBucketAdapter.
     public void onBindViewHolder(@NonNull PhotoBucketViewHolder PhotoBucketViewHolder, int i) {
         DocumentSnapshot ds = mPhotoBucketSnapshots.get(i);
         String caption = (String)ds.get(Constants.KEY_CAPTION);
-        String imageURL = (String)ds.get(Constants.KEY_URL);
+        //String imageURL = (String)ds.get(Constants.KEY_URL);
         PhotoBucketViewHolder.mCaptionTextView.setText(caption);
-        PhotoBucketViewHolder.mImageURLTextView.setText(imageURL);
+        //PhotoBucketViewHolder.mImageURLTextView.setText(imageURL);
         //Ion.with(PhotoBucketDetailActivity.mImageView).load(imageURL);
     }
 
@@ -69,17 +69,17 @@ public class PhotoBucketAdapter extends RecyclerView.Adapter<PhotoBucketAdapter.
 
     class PhotoBucketViewHolder extends RecyclerView.ViewHolder {
         private TextView mCaptionTextView;
-        private TextView mImageURLTextView;
+        //private TextView mImageURLTextView;
 
-        public PhotoBucketViewHolder(@NonNull View itemView) {
+        public PhotoBucketViewHolder(@NonNull final View itemView) {
             super(itemView);
             mCaptionTextView = itemView.findViewById(R.id.itemview_caption);
-            mImageURLTextView = itemView.findViewById(R.id.itemview_imageURL);
+            //mImageURLTextView = itemView.findViewById(R.id.itemview_imageURL);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     DocumentSnapshot ds = mPhotoBucketSnapshots.get(getAdapterPosition());
-                    Context context = view.getContext();
+                    Context context = itemView.getContext();
                     Intent intent = new Intent(context, PhotoBucketDetailActivity.class);
                     intent.putExtra(Constants.EXTRA_DOC_ID, ds.getId());
                     context.startActivity(intent);

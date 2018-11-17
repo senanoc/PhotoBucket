@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -12,11 +12,11 @@
     tools:context=".PhotoBucketDetailActivity"
     tools:showIn="@layout/activity_photo_bucket_detail">
 
-    <TextView
+    <ImageView
+        android:id="@+id/detail_imageURL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Caption:" />
-
+		android:src="@android:drawable/sym_def_app_icon"/>
     <TextView
         android:id="@+id/detail_caption"
         android:layout_width="match_parent"
@@ -25,19 +25,6 @@
         android:textSize="20sp"
         android:layout_margin="20dp"
         android:textColor="@android:color/black"
-        android:gravity="center"
-        />
+        android:gravity="center_horizontal"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Image URL:" />
-
-    <ImageView
-        android:id="@+id/detail_imageURL"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        />
-
-</LinearLayout>
+</RelativeLayout>
